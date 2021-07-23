@@ -184,20 +184,33 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('admin.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
-                            <p>Главная</p>
+                            <p>{{ __('Главная ') }}</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-home"></i>
-                            <p>Главная</p>
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>{{ __('Категории') }}<i class="right fas fa-angle-left"></i></p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('categories.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Список категорий') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('categories.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Новая категория') }}</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
@@ -222,7 +235,18 @@
         </div>
         <!-- /.sidebar -->
     </aside>
-
+    @if(Session::has('success'))
+        <div class="container mt-2">
+            <div class="row">
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                    <div>
+                        {{ Session::get('success') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     @yield('content')
 
     <footer class="main-footer">
@@ -242,6 +266,15 @@
 
 <!-- Admin JS -->
 <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
+<script>
+    $('.nav-sidebar a').each(function () {
+        let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        let link = this.href;
+        if (link === location) {
+            $(this).addClass('active');
+            $(this).closest('.has-treeview').addClass('menu-open');
+        }
+    });
+</script>
 </body>
-
 </html>
