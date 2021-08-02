@@ -210,23 +210,51 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tags"></i>
+                            <p>{{ __('Теги') }}<i class="right fas fa-angle-left"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('tags.index') }}" class="nav-link">
+                                    <i class="fas fa-tag nav-icon"></i>
+                                    <p>{{ __('Список тегов') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('tags.create') }}" class="nav-link">
+                                    <i class="fas fa-tag nav-icon"></i>
+                                    <p>{{ __('Новый тег') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-newspaper"></i>
+                            <p>{{ __('Статьи') }}<i class="right fas fa-angle-left"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('posts.index') }}" class="nav-link">
+                                    <i class="fas fa-align-left nav-icon"></i>
+                                    <p>{{ __('Список статей') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('posts.create') }}" class="nav-link">
+                                    <i class="far fa-plus-square nav-icon"></i>
+                                    <p>{{ __('Новая статья') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
-                            <p>Главная</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-home"></i>
-                            <p>Главная</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-home"></i>
-                            <p>Главная</p>
+                            <p>Example</p>
                         </a>
                     </li>
                 </ul>
@@ -235,6 +263,16 @@
         </div>
         <!-- /.sidebar -->
     </aside>
+
+    @if(Session::has('success'))
+        <div class="container mt-3">
+            <div class="col-md-6 offset-3">
+                <div class="alert alert-success" role="alert">
+                    {{ Session::get('success')}}
+                </div>
+            </div>
+        </div>
+    @endif
 
     @yield('content')
 
