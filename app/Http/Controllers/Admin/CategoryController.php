@@ -9,7 +9,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
@@ -17,7 +16,6 @@ class CategoryController extends Controller
     public function index(): Factory|View|Application
     {
         $categories = Category::all();
-
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -32,7 +30,6 @@ class CategoryController extends Controller
         return view('admin.categories.create');
     }
 
-
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -45,17 +42,6 @@ class CategoryController extends Controller
         ]);
 
         return redirect()->route('categories.index')->with('success', __('Категория добавлена'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -78,8 +64,6 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category): RedirectResponse
     {
-
-
         $request->validate([
             'title' => 'required',
             'slug' => 'required|unique:categories'
@@ -93,7 +77,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Category $category
      * @return RedirectResponse
      */
     public function destroy(Category $category): RedirectResponse
