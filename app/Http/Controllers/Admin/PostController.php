@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function index(): Application|Factory|View
     {
-        $posts = Post::all();
+        $posts = Post::with('category', 'tags')->get();
 
         return view('admin.posts.index', compact('posts'));
     }
