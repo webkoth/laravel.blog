@@ -34,10 +34,10 @@ class Tag extends Model
     /**
      * Increment number to slug for unique value
      * @param $slug
-     * @return mixed|string
+     * @return mixed
      */
-    public function incrementSlug($slug) {
-
+    public function incrementSlug($slug): mixed
+    {
         $original = $slug;
         $count = 1;
 
