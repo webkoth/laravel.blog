@@ -264,11 +264,28 @@
         <!-- /.sidebar -->
     </aside>
 
-    @if(Session::has('success'))
+    @if (session('success'))
         <div class="container mt-3">
-            <div class="col-md-6 offset-3">
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('success')}}
+            <div class="row">
+                <div class="col-md-6 offset-3">
+                    <div class="alert alert-info alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-info"></i> Alert!</h5>
+                        {{ session('success') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    @if (session('failure'))
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-6 offset-3">
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-info"></i> Alert!</h5>
+                        {{ session('failure') }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -293,6 +310,7 @@
 
 <!-- Admin JS -->
 <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
+@stack('scripts')
 <script>
     $('.nav-sidebar a').each(function () {
         let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
