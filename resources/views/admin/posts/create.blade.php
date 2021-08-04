@@ -56,6 +56,7 @@
                             <label for="content">{{ __('Контент') }}</label>
                             <textarea id="content" name="content" class="form-control" rows="5" placeholder="Enter text">{{ old('content') }}</textarea>
                         </div>
+                        <div class="editor"></div>
                         <div class="form-group">
                             <label for="category_id">{{ __('Категория') }}</label>
                             <select class="form-control" id="category_id" name="category_id">
@@ -102,3 +103,58 @@
         <!-- /.content -->
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('assets/admin/js/ckeditor.js') }}"></script>
+    <script>
+        ClassicEditor.create( document.querySelector( '.editor' ), {
+            toolbar: {
+                items: [
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'link',
+                    'bulletedList',
+                    'numberedList',
+                    '|',
+                    'outdent',
+                    'indent',
+                    '|',
+                    'imageUpload',
+                    'blockQuote',
+                    'insertTable',
+                    'mediaEmbed',
+                    'undo',
+                    'redo'
+                ]
+            },
+            language: 'ru',
+            image: {
+                toolbar: [
+                    'imageTextAlternative',
+                    'imageStyle:inline',
+                    'imageStyle:block',
+                    'imageStyle:side'
+                ]
+            },
+            table: {
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells'
+                ]
+            },
+            licenseKey: '',
+        } )
+            .then( editor => {
+                window.editor = editor;
+            } )
+            .catch( error => {
+                console.error( 'Oops, something went wrong!' );
+                console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+                console.warn( 'Build id: adgzlhnjn028-nohdljl880ze' );
+                console.error( error );
+            } );
+    </script>
+@endpush

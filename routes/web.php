@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -31,3 +32,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 require __DIR__.'/admin.php';
+
+Route::resource('posts', 'PostController');
+
+
